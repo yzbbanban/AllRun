@@ -17,7 +17,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 
 public class MainFragmentActivity 
-extends FragmentActivity{
+extends BaseActivity{
 	SportFragment sportFragment;
 	
 	ArrayList<Fragment> fragmentList=
@@ -34,10 +34,16 @@ int orientation=newConfig.orientation;
 
 		super.onConfigurationChanged(newConfig);
 	}
+	@Override
+	protected void onDestroy() {
+		
+		super.onDestroy();
+	}
 @Override
 protected void onCreate(Bundle arg0) {	
 	super.onCreate(arg0);
 	try {
+		
 		
 		this.setContentView(R.layout.main_fragment);
 		//显示第一个fragment

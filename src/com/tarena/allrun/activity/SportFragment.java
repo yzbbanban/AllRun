@@ -39,6 +39,8 @@ public class SportFragment extends Fragment {
 	// 定位
 	LocationClient locationClient;
 	MapView mapView;
+	
+	
 	// 管理地图
 	BaiduMap baiduMap;
 	AlertDialog dialog;
@@ -55,27 +57,25 @@ public class SportFragment extends Fragment {
 
 	@Override
 	public void onPause() {
-
 		try {
 			mapView.onPause();
 			locationClient.stop();
-			super.onPause();
 		} catch (Exception e) {
 			e.printStackTrace();
-		}
+		}		
+		super.onPause();
 	}
-
 	@Override
 	public void onResume() {
 		try {
 			mapView.onResume();
 			locationClient.start();
-			super.onResume();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	}
 
+		super.onResume();
+	}
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
@@ -144,51 +144,53 @@ public class SportFragment extends Fragment {
 			@Override
 			public void onClick(View v) {
 				try {
-					String text = ((TextView) v).getText().toString();
-					// 判断单机的时候是开始还是结束
-					if ("结束".equals(text)) {
+					String text=((TextView)v).getText()
+							.toString();
+					//判断单击的时候是开始还是结束
+					if ("结束".equals(text))
+					{
 						linearLayout.setVisibility(View.GONE);
 						baiduMap.clear();
 						positionList.clear();
 						handler.removeCallbacks(runnable);
-						tvAction.setText("摸我");
-						count = 3;
-					} else {
+						tvAction.setText("开始");
+						count=3;
+					}else
+					{
+					
+					// 把xml变成view
+					View view = View.inflate(getActivity(),
+							R.layout.activity_show_counter, null);
+					// 创建dialog
+					dialog = new AlertDialog.Builder(getActivity()).create();
+					// 为dialog设置view
+					dialog.setView(view);
+					// 显示dialog
+					dialog.show();
 
-						// 把xml变成view
-						View view = View.inflate(getActivity(),
-								R.layout.activity_show_counter, null);
-						// 创建dialog
-						dialog = new AlertDialog.Builder(getActivity())
-								.create();
-						// 为dialog设置view
-						dialog.setView(view);
-						// 显示dialog
-						dialog.show();
-
-						// 从view中找到textView
-						final TextView tv = (TextView) view
-								.findViewById(R.id.tv_show_count);
-						// 每隔2秒中count-1,并且显示出来
-						final Handler handler = new Handler();
-						handler.postDelayed(new Runnable() {
-							@Override
-							public void run() {
-								tv.setText(String.valueOf(count));
-								count = count - 1;
-								if (count > -1) {
-									handler.postDelayed(this, 100);
-								} else {
-									dialog.dismiss();
-									dialog = null;
-									// 显示统计界面
-									showRecorder();
-								}
-
+					// 从view中找到textView
+					final TextView tv = (TextView) view
+							.findViewById(R.id.tv_show_count);
+					// 每隔2秒中count-1,并且显示出来
+					final Handler handler = new Handler();
+					handler.postDelayed(new Runnable() {
+						@Override
+						public void run() {
+							tv.setText(String.valueOf(count));
+							count = count - 1;
+							if (count > -1) {
+								handler.postDelayed(this, 2000);
+							} else {
+								dialog.dismiss();
+								dialog = null;
+								// 显示统计界面
+								showRecorder();
 							}
 
-						}, 100);
-						tvAction.setText("结束");
+						}
+
+					}, 100);					
+					tvAction.setText("结束");
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -256,66 +258,86 @@ public class SportFragment extends Fragment {
 		final Chronometer meter = (Chronometer) view
 				.findViewById(R.id.chronometer1);
 		meter.start();
-		meter.setBase(SystemClock.elapsedRealtime());
-		final TextView tvDistance = (TextView) view
-				.findViewById(R.id.tv_distance);
-		final TextView tvSpeed = (TextView) view
-				.findViewById(R.id.tv_recorder_speed);
+		meter.setBase
+		(SystemClock.elapsedRealtime());
+		final TextView tvDistance=
+				(TextView) view.
+				findViewById(R.id.tv_distance);
+		tvDistance.setText("0.00");
+		final TextView tvSpeed=(TextView) view
+				.findViewById
+				(R.id.tv_recorder_speed);
 		tvSpeed.setText("0.00");
 		// 每隔2秒计算数据
-		runnable = new Runnable() {
-
+		runnable=new Runnable() {
+			
 			@Override
 			public void run() {
 				try {
-					double distance = 0;
-					if (positionList.size() >= 2) {
-						for (int i = 0; i < positionList.size() - 1; i++) {
-							double long1 = positionList.get(i).longitude;
-							double lat1 = positionList.get(i).latitude;
-							double long2 = positionList.get(i + 1).longitude;
-							double lat2 = positionList.get(i + 1).latitude;
-							distance = distance
-									+ BaiduMapUtil.GetDistance(long1, lat1,
-											long2, lat2);
-
-						}
-						// 把米转成公里
-						distance = distance / 1000;
-						String strDistance = String.valueOf(distance);
-						if (strDistance.contains(".")) {
-							int pointIndex = strDistance.indexOf(".");
-							strDistance = strDistance.substring(0,
-									pointIndex + 3);
-
-						}
-						tvDistance.setText(strDistance);
-						// 得时间01:48
-						String time = meter.getText().toString();
-						// 得分钟
-						// [0]放的是01 [1]放的是48
-						String[] array = time.split(":");
-						double minute = Integer.parseInt(array[0]);
-						// 得秒
-						double second = Double.parseDouble(array[1]);
-						// 把秒转成小时
-						double hour = (minute * 60 + second) / 60 / 60;
-						double speed = distance / hour;
-						String strSpeed = String.valueOf(speed);
-						if (strSpeed.contains(".")) {
-							strSpeed = strSpeed.substring(0,
-									strSpeed.indexOf(".") + 3);
-						}
-						tvSpeed.setText(strSpeed);
+					Log.i("showRecorderRun", ""+System.currentTimeMillis());
+					double distance=0;
+					if (positionList.size()>=2)
+					{
+					for (int i=0;i<positionList.size()-1;i++)
+					{
+						double long1=positionList.get(i)
+								.longitude;
+						double lat1=positionList.get(i)
+								.latitude;
+						double long2=positionList.get(i+1)
+								.longitude;
+						double lat2=positionList.get(i+1)
+								.latitude;
+						distance=distance+BaiduMapUtil.GetDistance(long1, lat1, long2, lat2);
+						
+					}
+					//把米转成公里
+					distance=distance/1000;
+					String strDistance=String.valueOf
+							(distance);
+					if (strDistance.contains("."))
+					{
+						int pointIndex=strDistance
+								.indexOf(".");
+						strDistance=strDistance.
+								substring(0, pointIndex+3);
+						
+					}
+					tvDistance.setText(strDistance);
+					//得时间01:48
+					String time=meter.getText().toString();
+					//得分钟
+					//[0]放的是01 [1]放的是48
+					String[] array=time.split(":");
+					double minute=Integer.parseInt(array[0]);
+					//得秒
+					double second=Double.parseDouble(array[1]);
+					//把秒转成小时
+					double hour=(minute*60+second)/60/60;
+					double speed=distance/hour;
+					String strSpeed=String.valueOf(speed);
+					if (strSpeed.contains("."))
+					{
+						strSpeed=strSpeed.substring
+								(0, strSpeed.indexOf(".")
+										+3);
+					}
+					tvSpeed.setText(strSpeed);
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
-				} finally {
+				}finally
+				{
 					handler.postDelayed(this, sleepTime);
 				}
 			}
 		};
-		handler.postDelayed(runnable, sleepTime);
+		handler.postDelayed
+		(runnable, sleepTime);
 
+				
+				
+				
+				
 	}
 }

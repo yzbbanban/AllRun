@@ -26,18 +26,20 @@ public class MeFragment extends Fragment {
 
 	private void addListener() {
 		btnExit.setOnClickListener(new OnClickListener() {
-
+			
 			@Override
 			public void onClick(View v) {
-				TAppliction tAppliction = (TAppliction) getActivity()
-						.getApplication();
-				tAppliction.finishActivity();
+TAppliction tAppliction=(TAppliction) 
+getActivity().getApplication();
+tAppliction.finishActivity();
 			}
 		});
 	}
 
 	private void setViews() {
-		btnExit = (Button) view.findViewById(R.id.btn_me_exit);
+		btnExit=(Button) 
+				view.findViewById
+				(R.id.btn_me_exit);
 	}
 
 }

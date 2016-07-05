@@ -274,17 +274,18 @@ containing a value of this type.
         public static final int activity_start=0x7f030003;
         public static final int chat=0x7f030004;
         public static final int custom=0x7f030005;
-        public static final int dialog=0x7f030006;
-        public static final int fragment_discover=0x7f030007;
-        public static final int fragment_me=0x7f030008;
-        public static final int fragment_sport=0x7f030009;
-        public static final int fragment_sport_recorder=0x7f03000a;
-        public static final int main_fragment=0x7f03000b;
-        public static final int mall=0x7f03000c;
-        public static final int recorder=0x7f03000d;
-        public static final int taobao=0x7f03000e;
-        public static final int xlistview_footer=0x7f03000f;
-        public static final int xlistview_header=0x7f030010;
+        public static final int custom1603=0x7f030006;
+        public static final int dialog=0x7f030007;
+        public static final int fragment_discover=0x7f030008;
+        public static final int fragment_me=0x7f030009;
+        public static final int fragment_sport=0x7f03000a;
+        public static final int fragment_sport_recorder=0x7f03000b;
+        public static final int main_fragment=0x7f03000c;
+        public static final int mall=0x7f03000d;
+        public static final int recorder=0x7f03000e;
+        public static final int taobao=0x7f03000f;
+        public static final int xlistview_footer=0x7f030010;
+        public static final int xlistview_header=0x7f030011;
     }
     public static final class menu {
         public static final int main=0x7f0a0000;
@@ -343,7 +344,7 @@ containing a value of this type.
         public static final int config=0x7f040000;
     }
     public static final class styleable {
-        /** Attributes that can be used with a AnimationView.
+        /**   
            <p>Includes the following attributes:</p>
            <table>
            <colgroup align="left" />
@@ -428,7 +429,7 @@ containing a value of this type.
           @attr name android:border_width
         */
         public static final int CircleImageView_border_width = 0;
-        /** Attributes that can be used with a Shade.
+        /**   
            <p>Includes the following attributes:</p>
            <table>
            <colgroup align="left" />

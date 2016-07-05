@@ -1,33 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.tarena.allrun.widget.MyLinearlayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-     xmlns:AnimationView=
-     "http://schemas.android.com/apk/res-auto"
-     xmlns:Shade=
-     "http://schemas.android.com/apk/res-auto"
+<com.tarena.allrun.widget.MyLinearlayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:AnimationView="http://schemas.android.com/apk/res-auto"
+    xmlns:Shade="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
+
     <com.tarena.allrun.widget.CenterLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
-   <com.tarena.allrun.widget.AnimationView 
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:id="@+id/animationView"
-       AnimationView:sleep_time="1000"
-       AnimationView:images="@array/animationImages"
-       /> 
-       <com.tarena.allrun.widget.ShadeView 
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           Shade:text="运动伙伴 就选酷跑"
-           Shade:text_color="#FFFFFFFF"
-           Shade:shade_color="#FF888888"
-           Shade:text_size="48"
-           />
-       </com.tarena.allrun.widget.CenterLayout>
-       
+        android:layout_height="match_parent" >
+
+        <com.tarena.allrun.widget.AnimationView
+            android:id="@+id/animationView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            AnimationView:images="@array/animationImages"
+            AnimationView:sleep_time="1000" />
+
+        <com.tarena.allrun.widget.ShadeView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            Shade:shade_color="#FF888888"
+            Shade:text="运动伙伴 就选酷跑"
+            Shade:text_color="#FFFFFFFF"
+            Shade:text_size="48" />
+    </com.tarena.allrun.widget.CenterLayout>
 
 </com.tarena.allrun.widget.MyLinearlayout>
