@@ -10,6 +10,14 @@ import android.app.Application;
 import android.os.Process;
 
 public class TAppliction extends Application{
+	//第二种：全局变量
+	public static boolean networkIsNone=false;
+	public static boolean networkIsMobile=false;
+	public static boolean networkIsWifi=false;
+	
+	//release:发布了，程序运行在用户设备上
+	//false:开发
+	public final static boolean ISRELEASE=false;
 	public ArrayList<Activity> activityList=
 			new ArrayList<Activity>();
 	public void finishActivity()

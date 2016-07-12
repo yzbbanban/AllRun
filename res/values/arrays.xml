@@ -6,8 +6,6 @@
         <item>@drawable/logo2</item>
         <item>@drawable/logo3</item>
         <item>@drawable/logo4</item>
-        <item>@drawable/back</item>
-        <item>@drawable/ic_launcher</item>
     </string-array>
 
 </resources>
