@@ -25,9 +25,9 @@ public class MainActivity extends BaseActivity {
 
 			@Override
 			public void run() {
-				// startActivity(
-				// new Intent(MainActivity.this,
-				// MainFragmentActivity.class));
+				 startActivity(
+				 new Intent(MainActivity.this,
+				 MainFragmentActivity.class));
 			}
 		}, 2000);
 

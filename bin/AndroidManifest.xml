@@ -9,7 +9,7 @@
         android:targetSdkVersion="17" />
 
     <application
-        android:name="TAppliction"
+        android:name="com.tarena.allrun.TAppliction"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
@@ -24,20 +24,29 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.MainFragmentActivity"
+            android:name="com.tarena.allrun.activity.MainFragmentActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="@string/app_name" >
+        </activity>
+        <activity android:name="com.tarena.allrun.activity.ChatActivity" >
         </activity>
         <!-- value的值是从lbsyun.baidu.com申请，跟证书有关，换电脑就重新申请 -->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
             android:value="O8mE5pvYdtKeQF4CXDmxNxZvApl2yLGK" />
+
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
             android:process=":remote" >
         </service>
+
+        <activity
+            android:name="com.tarena.allrun.activity.Shopping_Activity"
+            android:label="@string/title_activity_shopping_" >
+        </activity>
     </application>
+
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" >
     </uses-permission>
     <!-- baidu map start -->
